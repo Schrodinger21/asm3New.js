@@ -17,8 +17,8 @@ function homeDisplay() {
 }
 //Hàm log out
 logoutBtn.addEventListener("click", function () {
-  const logout = confirm("Are you sure to Logout?");
-  if (logout) {
+  const logoutUser = confirm("Are you sure to Logout?");
+  if (logoutUser) {
     // localStorage.removeItem("currentUser");
     currentUser = null;
     saveToStorage("currentUser", currentUser);

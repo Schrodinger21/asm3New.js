@@ -26,16 +26,16 @@ loginBtn.addEventListener("click", function () {
     }
   }
 });
+
 //Hàm kiểm tra tính hợp lệ của username và password
 function validateData() {
-  let check = true;
   if (loginName.value === "") {
-    check = false;
     alert("Please input User Name!");
+    return false;
   }
   if (loginPassword.value === "") {
-    check = false;
     alert("Please input Password!");
+    return false;
   }
-  return check;
+  return true;
 }
