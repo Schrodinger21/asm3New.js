@@ -17,12 +17,9 @@ function homeDisplay() {
 }
 //Hàm log out
 logoutBtn.addEventListener("click", function () {
-  const logoutUser = confirm("Are you sure to Logout?");
-  if (logoutUser) {
-    // localStorage.removeItem("currentUser");
+  if (confirm("Are you sure to Logout?")) {
     currentUser = null;
     saveToStorage("currentUser", currentUser);
     homeDisplay();
-    console.log("đã logout");
   }
 });

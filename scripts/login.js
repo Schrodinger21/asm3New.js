@@ -6,7 +6,6 @@ const loginBtn = document.getElementById("btn-submit");
 loginBtn.addEventListener("click", function () {
   const validate = validateData();
   if (validate) {
-    let temp = 0;
     for (let i = 0; i < userArr.length; i++) {
       if (
         //check user và pass
@@ -16,13 +15,14 @@ loginBtn.addEventListener("click", function () {
         saveToStorage("currentUser", userArr[i]);
         alert("Login Succesful!");
 
-        temp++;
         //chuyến đến trang index.html nếu đăng nhập thành công
         window.location.href = "../index.html";
+      } else if (
+        userArr[i].username !== loginName.value &&
+        userArr[i].password !== loginPassword.value
+      ) {
+        alert("User name hoặc password không đúng!");
       }
-    }
-    if (temp === 0) {
-      alert("User name hoặc password không đúng!");
     }
   }
 });
