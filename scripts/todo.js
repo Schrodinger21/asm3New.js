@@ -8,7 +8,7 @@ displayTodoList();
 addBtn.addEventListener("click", function () {
   //Nếu inputtask = rỗng thì không nhập được
   if (inputTask.value != "") {
-    const todo = new Task(inputTask.value, currentUser.username, false);
+    const todo = new Task(inputTask.value, currentUser.userName, false);
     todoArr.push(todo);
     saveToStorage("todoArr", todoArr);
     inputTask.value = "";
@@ -20,7 +20,7 @@ function displayTodoList() {
   let html = "";
   for (let i = 0; i < todoArr.length; i++) {
     //kiểm tra các task có được tạo bởi currentUser không
-    if (todoArr[i].owner === currentUser.username) {
+    if (todoArr[i].owner === currentUser.userName) {
       html += `
       <li data-task=${todoArr[i].task} class=${
         todoArr[i].isDone === true ? "checked" : ""
@@ -42,7 +42,7 @@ function checkTask() {
         li.classList.toggle("checked");
         for (let i = 0; i < todoArr.length; i++) {
           //kiểm tra các task được tạo bởi currentUser
-          if (todoArr[i].owner === currentUser.username) {
+          if (todoArr[i].owner === currentUser.userName) {
             //chọn lại đúng task đã click
             if (todoArr[i].task === li.textContent.split("x")[0].trim()) {
               todoArr[i].isDone = li.classList.contains("checked")

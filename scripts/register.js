@@ -20,7 +20,7 @@ registerBtn.addEventListener("click", function () {
   function validateData(user) {
     if (userArr) {
       for (let i = 0; i < userArr.length; i++) {
-        if (userArr[i].username === user.username) {
+        if (userArr[i].userName === user.userName) {
           alert("User name đã được sử dụng.");
           return false;
         }
@@ -32,13 +32,13 @@ registerBtn.addEventListener("click", function () {
     } else if (user.lastName.trim() === "") {
       alert("Last name: không được để trống trường này!");
       return false;
-    } else if (user.username.trim() === "") {
+    } else if (user.userName.trim() === "") {
       alert("Please input Username");
       return false;
     } else if (user.password === "" || user.password.length <= 8) {
       alert("Vui lòng nhập Password và Password phải có nhiều hơn 8 kí tự!!!");
       return false;
-    } else if (user.confirmpassword === "") {
+    } else if (user.confirmPassword === "") {
       alert("Confirm password: Không được để trống trường này!");
       return false;
     } else if (user.password !== inputConfirmPassword.value) {
