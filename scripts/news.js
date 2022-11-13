@@ -5,14 +5,12 @@ const btnPrev = document.getElementById("btn-prev");
 const btnNext = document.getElementById("btn-next");
 const pageNum = document.getElementById("page-num");
 let totalResults = 0;
-
 currentUser = getFormStorage("currentUser");
 
 const getDataNews = async (country, page) => {
   try {
     const response = await fetch(
       `https://newsapi.org/v2/top-headlines?country=${country}&category=${currentUser.category}&pageSize=${currentUser.pageSize}&page=${page}&apiKey=4395e19190194dca9a0129f504188883`
-      // `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=4395e19190194dca9a0129f504188883`
     );
     const data = await response.json();
     // enter you logic when the fetch is successful
@@ -33,49 +31,29 @@ function displayNewsList(data) {
   checkPageNum();
   let html = "";
   data.articles.forEach(function (article) {
-    //     html += `
-    //     <div class="card flex-row flex-wrap">
-    //       <div class="card mb-3" style="">
-    //         <div class="row no-gutters">
-    //           <div class="col-md-4">
-    //             <img src=${
-    //               article.urlToImage ? article.urlToImage : "../no-image.jpg"
-    //             }
-    //               class="card-img"
-    //               alt="img" />
-    //           </div>
-    //           <div class="col-md-8">
-    //             <div class="card-body">
-    //               <h5 class="card-title">${article.title}</h5>
-    //               <p class="card-text">${article.description}</p>
-    //               <a href=${article.url} target="_blank"
-    //                 class="btn btn-primary">View</a>
-    //             </div>
-    //           </div>
-    //         </div>
-    //       </div>
-    //     </div>
-    // `;
     html += `
-    <div class="card flex-row flex-wrap">
-      <div class="card mb-3" style="">
-        <div class="row no-gutters">
-          <div class="col-md-4">
-            <img src=${article.urlToImage ? article.urlToImage : "no-image.png"}
-              class="card-img"
-              alt="img" />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <h5 class="card-title">${article.title}</h5>
-              <p class="card-text">${article.description}</p>
-                class="btn btn-primary">View</a>
+      <div class="card flex-row flex-wrap">
+        <div class="card p-3" style="">
+          <div class="row no-gutters">
+            <div class="col-md-4">
+              <img src=${
+                article.urlToImage ? article.urlToImage : "../no-image.jpg"
+              }
+                class="card-img"
+                alt="img" />
+            </div>
+            <div class="col-md-8">
+              <div class="card-body">
+                <h5 class="card-title">${article.title}</h5>
+                <p class="card-text">${article.description}</p>
+                <a href=${article.url} target="_blank"
+                  class="btn btn-primary">View</a>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-`;
+    `;
   });
   newsContainer.innerHTML = html;
 }
@@ -87,7 +65,7 @@ function checkPageNum() {
     btnPrev.style.display = "block";
   }
   if (parseInt(pageNum.textContent) * currentUser.pageSize >= totalResults) {
-    console.log("oke");
+    console.log("The end");
     btnNext.style.display = "none";
   } else {
     btnNext.style.display = "block";
@@ -95,9 +73,9 @@ function checkPageNum() {
 }
 //Next trang
 btnNext.addEventListener("click", function () {
-  getNewData("us", ++pageNum.textContent);
+  getDataNews("us", ++pageNum.textContent);
 });
 //Prev lại trang
 btnPrev.addEventListener("click", function () {
-  getNewData("us", --pageNum.textContent);
+  getDataNews("us", --pageNum.textContent);
 });

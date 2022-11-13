@@ -20,7 +20,7 @@ registerBtn.addEventListener("click", function () {
   function validateData(user) {
     if (userArr) {
       for (let i = 0; i < userArr.length; i++) {
-        if (userArr[i].userName === user.userName) {
+        if (userArr[i].username === user.username) {
           alert("User name đã được sử dụng.");
           return false;
         }
@@ -32,7 +32,7 @@ registerBtn.addEventListener("click", function () {
     } else if (user.lastName.trim() === "") {
       alert("Last name: không được để trống trường này!");
       return false;
-    } else if (user.userName.trim() === "") {
+    } else if (user.username.trim() === "") {
       alert("Please input Username");
       return false;
     } else if (user.password === "" || user.password.length <= 8) {

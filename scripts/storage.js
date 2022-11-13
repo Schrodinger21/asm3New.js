@@ -29,13 +29,6 @@ function parseUser(userData) {
   return user;
 }
 
-class Task {
-  constructor(task, owner, isDone) {
-    this.task = task;
-    this.owner = owner;
-    this.isDone = isDone;
-  }
-}
 const todos = getFormStorage("todoArr") ? getFormStorage("todoArr") : [];
 
 //Chuyển từng Object của todoArr thành class instance
