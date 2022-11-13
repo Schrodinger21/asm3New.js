@@ -2,11 +2,11 @@
 
 const userArr = getFormStorage("userArr") ? getFormStorage("userArr") : [];
 
-//hàm lấydữ liệu từ Local Storage
+//lấydữ liệu từ Local Storage
 function getFormStorage(key) {
   return JSON.parse(localStorage.getItem(key));
 }
-//Hàm lưu dữ liệu vào Local Storage
+//Lưu dữ liệu vào Local Storage
 function saveToStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }

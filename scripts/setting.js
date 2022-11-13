@@ -1,10 +1,11 @@
 "use strict";
 
-const btnSubmit = document.getElementById("btn-submit");
+const submitBtn = document.getElementById("btn-submit");
 const inputPageSize = document.getElementById("input-page-size");
 const inputCategory = document.getElementById("input-category");
 
-btnSubmit.addEventListener("click", function () {
+// Event click submit
+submitBtn.addEventListener("click", function () {
   currentUser.pageSize = parseInt(inputPageSize.value);
   currentUser.category = inputCategory.value;
   saveToStorage("currentUser", currentUser);
@@ -13,9 +14,11 @@ btnSubmit.addEventListener("click", function () {
       userArr[i] = currentUser;
       saveToStorage("userArr", userArr);
       alert("Setting Sucessful!");
+      // chuyển về trang news
       window.location.href = "../pages/news.html";
     }
   }
+  // Dữ liệu mặc dịnh bạn đầu
   inputPageSize.value = "";
   inputCategory.value = "General";
 });

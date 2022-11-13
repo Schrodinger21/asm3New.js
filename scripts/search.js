@@ -17,10 +17,11 @@ navPageNum.style.display = "none";
 submitBtn.addEventListener("click", function () {
   pageNum.textContent = "1";
   newsContainer.innerHTML = "";
-
-  if (inputQuery.value.trim().lenght === "") {
-    alert("Nhập keywords để tìm kiếm!");
+  // kiểm tra người dùng đã nhập keywwords?
+  if (inputQuery.value.trim().length === 0) {
+    // Ẩn nút chuyển trang nếu keywords chưa được nhập.
     navPageNum.style.display = "none";
+    alert("Nhập keywords để tìm kiếm!");
   } else {
     keywords = inputQuery.value;
     getDataNewsByKeyWords(keywords, 1);
@@ -35,7 +36,7 @@ const getDataNewsByKeyWords = async (keywords, page) => {
     const data = await response.json();
     // thông báo lỗi
     if (data.totalResults == 0) {
-      // ẩn thanh next trang
+      // ẩn nút chuyển trang
       navPageNum.style.display = "none";
       alert(
         "Error: không có bài viết nào hợp với từ khóa đang tìm kiếm. Hãy thử lại bằng cách nhập từ khóa mới!"
@@ -49,6 +50,7 @@ const getDataNewsByKeyWords = async (keywords, page) => {
     alert("Error: " + error.message);
   }
 };
+// HIển thị news list
 function displayNewsList(data) {
   totalResults = data.totalResults;
   checkPageNum();
@@ -80,6 +82,7 @@ function displayNewsList(data) {
   });
   newsContainer.innerHTML = html;
 }
+// Kiểm tra xem có phải là trang đầu tiên hoặc trang cuối cùng không để ẩn và hiện nút Next và Prev
 function checkPageNum() {
   if (pageNum.textContent === "1") {
     btnPrev.style.display = "none";
@@ -97,7 +100,7 @@ function checkPageNum() {
 btnNext.addEventListener("click", function () {
   getDataNewsByKeyWords(keywords, ++pageNum.textContent);
 });
-//Prev lại trang
+//Prev trang
 btnPrev.addEventListener("click", function () {
   getDataNewsByKeyWords(keywords, --pageNum.textContent);
 });
