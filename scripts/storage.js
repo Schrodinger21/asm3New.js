@@ -1,6 +1,7 @@
 "use strict";
 
 const userArr = getFormStorage("userArr") ? getFormStorage("userArr") : [];
+const todos = getFormStorage("todoArr") ? getFormStorage("todoArr") : [];
 
 //lấydữ liệu từ Local Storage
 function getFormStorage(key) {
@@ -10,6 +11,7 @@ function getFormStorage(key) {
 function saveToStorage(key, value) {
   localStorage.setItem(key, JSON.stringify(value));
 }
+
 //Xác định user đang đăng nhập
 let currentUser = getFormStorage("currentUser")
   ? parseUser(getFormStorage("currentUser"))
@@ -28,8 +30,6 @@ function parseUser(userData) {
 
   return user;
 }
-
-const todos = getFormStorage("todoArr") ? getFormStorage("todoArr") : [];
 
 //Chuyển từng Object của todoArr thành class instance
 const todoArr = todos.map((todo) => parseTask(todo));
