@@ -13,13 +13,14 @@ loginBtn.addEventListener("click", function () {
         userArr[i].username === loginName.value &&
         userArr[i].password === loginPassword.value
       ) {
+        // lưu thông tin người dùng đang hoạt động trên trang
         saveToStorage("currentUser", userArr[i]);
         alert("Login Succesful!");
 
         //chuyến đến trang index.html nếu đăng nhập thành công
         window.location.href = "../index.html";
       } else if (
-        userArr[i].username !== loginName.value &&
+        userArr[i].username !== loginName.value ||
         userArr[i].password !== loginPassword.value
       ) {
         alert("User name hoặc password không đúng!");
@@ -27,7 +28,6 @@ loginBtn.addEventListener("click", function () {
     }
   }
 });
-
 //Hàm kiểm tra tính hợp lệ của username và password
 function validateData() {
   if (loginName.value === "") {

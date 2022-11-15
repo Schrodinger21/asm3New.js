@@ -8,6 +8,7 @@ const registerBtn = document.getElementById("btn-submit");
 
 // Event click registerBtn.
 registerBtn.addEventListener("click", function () {
+  // Lấy dữ liệu nhập vào từ người dùng qua form
   const user = new User(
     inputFirstName.value,
     inputLastName.value,
@@ -33,12 +34,12 @@ registerBtn.addEventListener("click", function () {
       alert("Last name: không được để trống trường này!");
       return false;
     } else if (user.username.trim() === "") {
-      alert("Please input Username");
+      alert("User name: Không được để trống trường này!");
       return false;
     } else if (user.password === "" || user.password.length <= 8) {
       alert("Vui lòng nhập Password và Password phải có nhiều hơn 8 kí tự!!!");
       return false;
-    } else if (user.confirmPassword === "") {
+    } else if (user.confirmPassword.trim() === "") {
       alert("Confirm password: Không được để trống trường này!");
       return false;
     } else if (user.password !== inputConfirmPassword.value) {
@@ -49,13 +50,16 @@ registerBtn.addEventListener("click", function () {
     }
     return true;
   }
+  const validate = validateData(user);
+  if (validate) {
+    // thêm user vào màng userArr
+    userArr.push(user);
+    // Save dữ liệu xuống localstorage
+    saveToStorage("userArr", userArr);
+    console.log(userArr);
+    // Bật cửa sổ thông báo thành công cho người dùng.
+    alert("Successful!!!");
+    // Chuyển tới trang login.html khi đăng ký thành công.
+    window.location.href = "../pages/login.html";
+  }
 });
-const validate = validateData(user);
-if (validate) {
-  userArr.push(user);
-  saveToStorage("userArr", userArr);
-  console.log(userArr);
-  alert("Successful!!!");
-  // Chuyển tới trang login.html khi đăng ký thành công.
-  window.location.href = "../pages/login.html";
-}

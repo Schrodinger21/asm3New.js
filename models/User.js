@@ -1,5 +1,5 @@
 "use strict";
-
+// Thông tin người dùng
 class User {
   constructor(
     firstName,
@@ -20,6 +20,7 @@ class User {
   }
 }
 
+// class task chứa thông tin stack trong todo list
 class Task {
   constructor(task, owner, isDone) {
     this.task = task;
