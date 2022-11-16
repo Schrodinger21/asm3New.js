@@ -11,6 +11,7 @@ addBtn.addEventListener("click", function () {
     const todo = new Task(inputTask.value, currentUser.username, false);
     todoArr.push(todo);
     saveToStorage("todoArr", todoArr);
+    // Xóa dữ liệu từ ô input
     inputTask.value = "";
     displayTodoList();
   }
@@ -36,6 +37,7 @@ function displayTodoList() {
 }
 //hàm check task
 function checkTask() {
+  // Lấy tất cả các phần tử li chứa thông tin của task  và bắt vào sự kiện click submit
   document.querySelectorAll("#todo-list li").forEach(function (li) {
     li.addEventListener("click", function (e) {
       if (e.target !== li.children[0]) {
@@ -60,18 +62,20 @@ function checkTask() {
 function deleteTask() {
   document.querySelectorAll("#todo-list .close").forEach(function (close) {
     close.addEventListener("click", function () {
-      for (let i = 0; i < todoArr.length; i++) {
-        if (todoArr[i].owner === currentUser.username) {
-          if (
-            // kiểm tra lại task đã click vào
-            todoArr[i].task ===
-            close.parentElement.textContent.split("x")[0].trim()
-          ) {
-            console.log("delete success");
-            todoArr.splice(i, 1);
-            displayTodoList();
+      if (confirm("You are sure?")) {
+        for (let i = 0; i < todoArr.length; i++) {
+          if (todoArr[i].owner === currentUser.username) {
+            if (
+              // kiểm tra lại task đã click vào
+              todoArr[i].task ===
+              close.parentElement.textContent.split("x")[0].trim()
+            ) {
+              console.log("delete success");
+              todoArr.splice(i, 1);
+              displayTodoList();
+            }
+            saveToStorage("todoArr", todoArr);
           }
-          saveToStorage("todoArr", todoArr);
         }
       }
     });

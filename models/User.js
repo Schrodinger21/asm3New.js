@@ -7,8 +7,8 @@ class User {
     username,
     password,
     confirmPassword,
-    pageSize,
-    category
+    pageSize = 5,
+    category = "Technology"
   ) {
     this.firstName = firstName;
     this.lastName = lastName;
