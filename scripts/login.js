@@ -5,6 +5,7 @@ const loginBtn = document.getElementById("btn-submit");
 
 // Event click Login
 loginBtn.addEventListener("click", function () {
+  const validate = validateData();
   if (validate) {
     for (let i = 0; i < userArr.length; i++) {
       if (
@@ -30,7 +31,7 @@ loginBtn.addEventListener("click", function () {
 });
 //Hàm kiểm tra tính hợp lệ của username và password
 
-const validate = function validateData() {
+function validateData() {
   if (loginName.value === "") {
     alert("Please input User Name!");
     return false;
@@ -39,4 +40,4 @@ const validate = function validateData() {
     return false;
   }
   return true;
-};
+}
